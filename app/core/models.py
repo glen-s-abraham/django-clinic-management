@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.conf import settings
+from django.utils.timezone import now
 
 
 class UserManager(BaseUserManager):
@@ -39,8 +41,19 @@ class Patient(models.Model):
     lname = models.CharField(max_length=255)
     place = models.CharField(max_length=255)
     mobile = models.CharField(max_length=10, unique=True)
-    age = models.IntegerField(max_length=3)
+    age = models.IntegerField()
     blood_group = models.CharField(max_length=3)
 
     def __str__(self):
         return self.fname
+
+
+class Appointment(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(default=now)
+    finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
