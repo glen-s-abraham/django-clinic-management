@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'core',
     'users',
-    'patient'
+    'patient',
+    'appointments',
+    'prescription',
 
 ]
 
