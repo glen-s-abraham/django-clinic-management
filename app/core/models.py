@@ -32,3 +32,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     objects = UserManager()
     USERNAME_FIELD = 'email'
+
+
+class Patient(models.Model):
+    fname = models.CharField(max_length=255)
+    lname = models.CharField(max_length=255)
+    place = models.CharField(max_length=255)
+    mobile = models.CharField(max_length=10, unique=True)
+    age = models.IntegerField(max_length=3)
+    blood_group = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.fname
