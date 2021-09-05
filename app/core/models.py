@@ -67,4 +67,15 @@ class Prescription(models.Model):
     created_on = models.DateTimeField(default=now)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.appointment)
+
+
+class Diagnosis(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    notes = models.CharField(max_length=300)
+    created_on = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return str(self.appointment)

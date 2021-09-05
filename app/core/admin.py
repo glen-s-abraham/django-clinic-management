@@ -27,3 +27,5 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Patient)
 admin.site.register(models.Appointment)
+admin.site.register(models.Prescription)
+admin.site.register(models.Diagnosis)
